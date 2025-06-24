@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Untuk Kamu, Cintaku</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', cursive;
+      background: linear-gradient(to bottom right, #ffe4e1, #ffcccb);
+      text-align: center;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-top: 50px;
+      font-size: 2.5em;
+      color: #c2185b;
+    }
+
+    #surat {
+      font-size: 1.2em;
+      margin: 20px auto;
+      max-width: 650px;
+      padding: 0 20px;
+      white-space: pre-line;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #ff4081;
+      border: none;
+      color: white;
+      padding: 14px 28px;
+      font-size: 1em;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #f06292;
+    }
+
+    #response {
+      display: none;
+      font-size: 1.4em;
+      color: #d81b60;
+      margin-top: 30px;
+      animation: fadeIn 1.2s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 4s linear infinite;
+      opacity: 0.6;
+      z-index: 0;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); }
+      100% { transform: translateY(-100vh) rotate(45deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Musik -->
+  <iframe width="0" height="0" src="https://www.youtube.com/embed/Lc7NGjNzXhA?autoplay=1&loop=1&playlist=Lc7NGjNzXhA"
+    title="Sampai Jadi Debu" frameborder="0" allow="autoplay" allowfullscreen style="display:none;"></iframe>
+
+  <!-- Foto -->
+  <img src="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MzAyOTQwMzQzMjM2OTY0?story_media_id=3592629826706054982&igsh=aTZtMDl2eHZ1MG11" alt="Foto Dia" />
+
+  <h1>Untuk Wanita Tercantik di Dunia 💖</h1>
+  <p id="surat"></p>
+
+  <button onclick="jawab()">Mau Kan Kamu Jadi Milikku Selamanya?</button>
+
+  <div id="response">
+    🥺 Aku juga cinta kamu!<br>Yuk jalan bareng sampai masa depan 💍<br><br>
+    <a href="https://wa.me/6283865855639?text=aku%20mau%20sama%20sakaa%20selamanya!%20🥺❤️" target="_blank">
+      <button style="background:#25d366;">Chat Aku di WhatsApp 💬</button>
+    </a>
+  </div>
+
+  <!-- Confetti -->
+  <canvas id="confetti" class="confetti"></canvas>
+
+  <!-- Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    function jawab() {
+      document.getElementById("response").style.display = "block";
+      confetti({
+        particleCount: 200,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+
+    // Typing Effect
+    const text = "sayang...\n\nAku cuma pengen kamu tauu ,\nkamu adalah alasan aku senyum setiap hari.\nTerima kasih sudah hadir di hidupku. ❤️";
+    let i = 0;
+
+    function typeLetter() {
+      if (i < text.length) {
+        document.getElementById("surat").innerHTML += text.charAt(i) === '\n' ? "<br>" : text.charAt(i);
+        i++;
+        setTimeout(typeLetter, 60);
+      }
+    }
+    window.onload = typeLetter;
+
+    // Heart Effect
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }, 300);
+  </script>
+
+</body>
+</html>
